@@ -18,6 +18,7 @@ class Tooltip extends HTMLElement{
         this.addEventListener('mouseenter',()=> this._showCustomTooltip())
         this.addEventListener('mouseleave',()=> this._hideCustomTooltip())
         this.appendChild(questionMark);
+        this.style.position = "relative"
 
     }
     disconnectedCallback(){
@@ -29,6 +30,8 @@ class Tooltip extends HTMLElement{
         this.tooltipContainer = document.createElement('div');
         this.tooltipContainer.style.backgroundColor ="black";
         this.tooltipContainer.style.color = "white";
+        this.tooltipContainer.style.position = "absolute";
+        this.tooltipContainer.style.zIndex = "10"
         this.tooltipContainer.innerHTML = this.tooltipText;
         this.appendChild(this.tooltipContainer);        
 
