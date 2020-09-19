@@ -3,7 +3,8 @@ class Tooltip extends HTMLElement{
         super();
         console.log('Hi! I m your custom tooltip')
         this.tooltipContainer;
-        this.tooltipText = 'Default tooltip text'
+        this.tooltipText = 'Default tooltip text';
+        this.attachShadow({mode:'open'});
     }
     connectedCallback(){
         
@@ -17,7 +18,7 @@ class Tooltip extends HTMLElement{
         questionMark.textContent = '<?>'
         this.addEventListener('mouseenter',()=> this._showCustomTooltip())
         this.addEventListener('mouseleave',()=> this._hideCustomTooltip())
-        this.appendChild(questionMark);
+        this.shadowRoot.appendChild(questionMark);
         this.style.position = "relative"
 
     }
@@ -33,11 +34,11 @@ class Tooltip extends HTMLElement{
         this.tooltipContainer.style.position = "absolute";
         this.tooltipContainer.style.zIndex = "10"
         this.tooltipContainer.innerHTML = this.tooltipText;
-        this.appendChild(this.tooltipContainer);        
+        this.shadowRoot.appendChild(this.tooltipContainer);        
 
     }
     _hideCustomTooltip(){
-        this.removeChild(this.tooltipContainer)
+        this.shadowRoot.removeChild(this.tooltipContainer)
     }
     
 
